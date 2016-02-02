@@ -24,12 +24,17 @@
       border: 0;
     }
 
-    button.btn1 {
-      margin-left: 25%;
+    button.btn {
+      background-color: black;
+      border-color: black;
     }
 
-    button.btn2 {
-      margin-left: 10%;
+    .delete-button {
+      margin-right: 20px;
+    }
+
+    .click-group {
+      text-align: center;
     }
   </style>
 
@@ -159,9 +164,10 @@
       </tbody>
     </table>
     <hr/>
-    <button type="button" class="btn1 btn-primary">선택삭제</button>
-    <button type="button" class="btn2 btn-primary">이름미정</button>
-
+    <div class="click-group">
+      <button type="button" class="btn btn-primary delete-button">선택삭제</button>
+      <button type="button" class="btn btn-primary">이름미정</button>
+    </div>
   </div>
   </div>
   </div>
