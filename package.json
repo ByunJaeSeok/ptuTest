@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ByunJaeSeok/ptuTest/issues"
   },
-  "homepage": "https://github.com/ByunJaeSeok/ptuTest#readme"
+  "homepage": "https://github.com/ByunJaeSeok/ptuTest#readme",
+  "devDependencies": {
+    "http-server": "^0.8.5"
+  }
 }
