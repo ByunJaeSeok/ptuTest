@@ -10,6 +10,9 @@ class Index extends Component {
   onButtonClick() {
     console.log('onButtonClick');
   }
+  onButtonClick1() {
+    console.log('onButtonClick1');
+  }
 
   render() {
     return (
@@ -30,27 +33,24 @@ class Index extends Component {
         </nav>
         <div className="container-fluid">
           <div className="row">
-            <button onClick={ this.onButtonClick }>
-              button
-            </button>
             <div className="col-md-3">
               <div className="well">
                 <h3>요일체크</h3>
                 <hr />
                 <form role="form">
-                  <label className="radio-inline">
+                  <label className="radio-inline" onClick={ this.onButtonClick }>
                     <input type="radio" name="optradio" />월
                   </label>
-                  <label className="radio-inline">
+                  <label className="radio-inline" onClick={ this.onButtonClick1 }>
                     <input type="radio" name="optradio" />화
                   </label>
-                  <label className="radio-inline">
+                  <label className="radio-inline" onClick={ this.onButtonClick }>
                     <input type="radio" name="optradio" />수
                   </label>
-                  <label className="radio-inline">
+                  <label className="radio-inline" onClick={ this.onButtonClick }>
                     <input type="radio" name="optradio" />목
                   </label>
-                  <label className="radio-inline">
+                  <label className="radio-inline" onClick={ this.onButtonClick }>
                     <input type="radio" name="optradio" />금
                   </label>
                 </form>
