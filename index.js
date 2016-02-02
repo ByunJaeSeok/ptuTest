@@ -1,20 +1,99 @@
 const Component = React.Component;
 
+var classList = [{
+  classID: '임시1',
+  classType: '전필',
+  className: '컴퓨터구조',
+  professor: '윤석규',
+  week: '수',
+  classTime: [2, 3, 4],
+}, {
+  classID: '임시2',
+  classType: '전선',
+  className: '자료구조',
+  professor: '문원식',
+  week: '목',
+  classTime: [6, 7, 8],
+}, {
+  classID: '임시3',
+  classType: '전필',
+  className: '안드로이드',
+  professor: '양단희',
+  week: '월',
+  classTime: [2, 3, 4],
+}, {
+  classID: '임시4',
+  classType: '교선',
+  className: 'c#',
+  professor: '조영희',
+  week: '월',
+  classTime: [6, 7, 8],
+}, {
+  classID: '임시5',
+  classType: '교선',
+  className: '엑셀',
+  professor: '양단희',
+  week: '월',
+  classTime: [2, 3],
+}, {
+  classID: '임시6',
+  classType: '전선',
+  className: '운영체제',
+  professor: '문원식',
+  week: '금',
+  classTime: [6, 7, 8],
+}, {
+  classID: '임시7',
+  classType: '전필',
+  className: '안드로이드',
+  professor: '양단희',
+  week: '월',
+  classTime: [2, 3, 4],
+}, {
+  classID: '임시8',
+  classType: '교필',
+  className: '안드로이드',
+  professor: '양단희',
+  week: '월',
+  classTime: [2, 3, 4],
+}];
+
+function filterByValues(collection, property, values) {
+  return _.filter(collection, function(item) {
+    return !_.chain(item[property])
+      .map(function(time) {
+        return _.includes(values, time);
+      })
+      .compact()
+      .isEmpty()
+      .value();
+  });
+}
 
 class Index extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      selectedWeek: 'all',
+      selectedTime: [1,2,3,4,5,6,7,8,9]
+    };
+
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-  onButtonClick() {
-    console.log('onButtonClick');
-  }
-  onButtonClick1() {
-    console.log('onButtonClick1');
+  onButtonClick(event) {
+    this.setState({
+      selectedWeek: event.target.value
+    });
   }
 
   render() {
+    var selectedWeek = this.state.selectedWeek;
+    var filteredClassList = filterByValues(classList, 'classTime',
+      this.state.selectedTime);
+
     return (
       <div className="Index">
         <nav className="navbar navbar-default">
@@ -38,20 +117,24 @@ class Index extends Component {
                 <h3>요일체크</h3>
                 <hr />
                 <form role="form">
-                  <label className="radio-inline" onClick={ this.onButtonClick }>
-                    <input type="radio" name="optradio" />월
+                  <label className="radio-inline" data-type="mon" >
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="월"/>월
                   </label>
-                  <label className="radio-inline" onClick={ this.onButtonClick1 }>
-                    <input type="radio" name="optradio" />화
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="화"/>화
                   </label>
-                  <label className="radio-inline" onClick={ this.onButtonClick }>
-                    <input type="radio" name="optradio" />수
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="수"/>수
                   </label>
-                  <label className="radio-inline" onClick={ this.onButtonClick }>
-                    <input type="radio" name="optradio" />목
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="목"/>목
                   </label>
-                  <label className="radio-inline" onClick={ this.onButtonClick }>
-                    <input type="radio" name="optradio" />금
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="금"/>금
+                  </label>
+                  <label className="radio-inline">
+                    <input type="radio" name="optradio" onClick={ this.onButtonClick } value="all"/>
+                    전체
                   </label>
                 </form>
               </div>
@@ -160,70 +243,24 @@ class Index extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>임시1</td>
-                    <td>전필</td>
-                    <td>컴퓨터구조</td>
-                    <td>윤석규</td>
-                    <td>수</td>
-                    <td>2,3,4</td>
-                  </tr>
-                  <tr>
-                    <td>임시2</td>
-                    <td>전선</td>
-                    <td>자료구조</td>
-                    <td>문원식</td>
-                    <td>목</td>
-                    <td>6,7,8</td>
-                  </tr>
-                  <tr>
-                    <td>임시3</td>
-                    <td>전필</td>
-                    <td>안드로이드</td>
-                    <td>양단희</td>
-                    <td>월</td>
-                    <td>2,3,4</td>
-                  </tr>
-                  <tr>
-                    <td>임시4</td>
-                    <td>교선</td>
-                    <td>c#</td>
-                    <td>조영희</td>
-                    <td>월</td>
-                    <td>6,7,8</td>
-                  </tr>
-                  <tr>
-                    <td>임시5</td>
-                    <td>교선</td>
-                    <td>엑셀</td>
-                    <td>양단희</td>
-                    <td>월</td>
-                    <td>2,3</td>
-                  </tr>
-                  <tr>
-                    <td>임시6</td>
-                    <td>전선</td>
-                    <td>운영체제</td>
-                    <td>문원식</td>
-                    <td>금</td>
-                    <td>6,7,8</td>
-                  </tr>
-                  <tr>
-                    <td>임시7</td>
-                    <td>전필</td>
-                    <td>안드로이드</td>
-                    <td>양단희</td>
-                    <td>월</td>
-                    <td>2,3,4</td>
-                  </tr>
-                  <tr>
-                    <td>임시8</td>
-                    <td>교필</td>
-                    <td>안드로이드</td>
-                    <td>양단희</td>
-                    <td>월</td>
-                    <td>2,3,4</td>
-                  </tr>
+                {
+                _.map(filteredClassList, function(value, index) {
+                  if (value.week !== selectedWeek && selectedWeek !== 'all') {
+                    return null;
+                  }
+
+                  return (
+                      <tr key={index}>
+                        <td>{value.classID}</td>
+                        <td>{value.classType}</td>
+                        <td>{value.className}</td>
+                        <td>{value.professor}</td>
+                        <td>{value.week}</td>
+                        <td>{value.classTime.join(', ')}</td>
+                      </tr>
+                    );
+                  })
+                }
                 </tbody>
               </table>
             </div>
