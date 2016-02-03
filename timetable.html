@@ -33,9 +33,16 @@
       margin-right: 20px;
     }
 
-    .click-group {
+
+    .schedule table{
+      margin-left: 5%;
       text-align: center;
     }
+    .schedule th {
+      text-align: center;
+      min-width: 100px;
+    }
+
   </style>
 
 </head>
@@ -54,8 +61,8 @@
             <li><a href="#">PTU교양</a></li>
           </ul>
         </li>
-        <li><a href="timetable.html">예비시간표</a></li>
-        <li class="active"><a href="basket.html">장바구니</a></li>
+        <li class="active"><a href="timetable.html">예비시간표</a></li>
+        <li><a href="basket.html">장바구니</a></li>
         <li><a href="#">학교 홈페이지</a></li>
         <li><a href="#">학사정보</a></li>
       </ul>
@@ -63,8 +70,8 @@
   </nav>
 
   <div class="container">
-    <h2><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> 장바구니</h2>
-    <table style="width:85%" , class="table table-striped">
+    <h2><span class="glyphicon glyphicon-time" aria-hidden="true"></span> 예비시간표</h2>
+    <table style="width:50%" , class="table table-striped">
       <thead>
         <tr>
           <th>
@@ -107,76 +114,108 @@
           </td>
           <td>임시3</td>
           <td>전필</td>
-          <td>안드로이드</td>
-          <td>양단희</td>
-          <td>월</td>
-          <td>2,3,4</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox">
-          </td>
-          <td>임시4</td>
-          <td>교선</td>
-          <td>c#</td>
-          <td>조영희</td>
-          <td>월</td>
-          <td>6,7,8</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox">
-          </td>
-          <td>임시5</td>
-          <td>교선</td>
-          <td>엑셀</td>
-          <td>양단희</td>
-          <td>월</td>
-          <td>2,3</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox">
-          </td>
-          <td>임시6</td>
-          <td>전선</td>
-          <td>운영체제</td>
-          <td>문원식</td>
-          <td>금</td>
-          <td>6,7,8</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox">
-          </td>
-          <td>임시7</td>
-          <td>전필</td>
-          <td>안드로이드</td>
-          <td>양단희</td>
-          <td>월</td>
-          <td>2,3,4</td>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox">
-          </td>
-          <td>임시8</td>
-          <td>교필</td>
-          <td>안드로이드</td>
+          <td>컴퓨터구조</td>
           <td>양단희</td>
           <td>월</td>
           <td>2,3,4</td>
         </tr>
       </tbody>
     </table>
-    <hr/>
     <div class="click-group">
-      <button type="button" class="btn btn-primary delete-button">선택삭제</button>
-      <button type="button" class="btn btn-primary">이름미정</button>
+      <button type="button" class="btn btn-primary delete-button btn-xs">선택삭제</button>
     </div>
   </div>
+  <hr />
+
+<div class="schedule">
+  <table style="width:60%" class="table table-bordered">
+      <thead>
+        <tr>
+          <th></th>
+          <th>월</th>
+          <th>화</th>
+          <th>수</th>
+          <th>목</th>
+          <th>금</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1<hr />09:00~10:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>2<hr />10:00~11:00</th>
+          <td>안드로이드<hr />이공관304</td>
+          <td></td>
+          <td>컴퓨터구조<hr />이공관403</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>3<hr />11:00~12:00</th>
+          <td>안드로이드<hr />이공관304</td>
+          <td></td>
+          <td>컴퓨터구조<hr />이공관403</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>4<hr />12:00~13:00</th>
+          <td>안드로이드<hr />이공관304</td>
+          <td></td>
+          <td>컴퓨터구조<hr />이공관403</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>5<hr />13:00~14:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>6<hr />14:00~15:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>자료구조<hr />이공관305</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>7<hr />15:00~16:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>자료구조<hr />이공관305</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>8<hr />16:00~17:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>자료구조<hr />이공관305</td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>9<hr />17:00~18:00</th>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  </div>
+
 </body>
 
 </html>

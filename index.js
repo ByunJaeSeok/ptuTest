@@ -85,7 +85,7 @@ class Index extends Component {
 
   onButtonClick(event) {
     this.setState({
-      selectedWeek: event.target.value
+      selectedWeek: event.target.value,
     });
   }
 
@@ -93,18 +93,24 @@ class Index extends Component {
     var selectedWeek = this.state.selectedWeek;
     var filteredClassList = filterByValues(classList, 'classTime',
       this.state.selectedTime);
-
+      {console.log(1)}
     return (
       <div className="Index">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
-              <a className="navbar-brand" href="#">평택대 수강신청</a>
+              <a className="navbar-brand" href="index.html">평택대 수강신청</a>
             </div>
             <ul className="nav navbar-nav">
-              <li className="active"><a href="#">Home</a></li>
-              <li><a href="#">예비시간표</a></li>
-              <li><a href="#">장바구니</a></li>
+              <li><a className="dropdown-toggle" data-toggle="dropdown" href="#">이수구분<span className="caret"></span></a>
+                <ul className="dropdown-menu">
+                  <li><a href="#">전공</a></li>
+                  <li><a href="#">교양</a></li>
+                  <li><a href="#">PTU교양</a></li>
+                </ul>
+              </li>
+              <li><a href="timetable.html">예비시간표</a></li>
+              <li><a href="basket.html">장바구니</a></li>
               <li><a href="#">학교 홈페이지</a></li>
               <li><a href="#">학사정보</a></li>
             </ul>
@@ -114,7 +120,7 @@ class Index extends Component {
           <div className="row">
             <div className="col-md-3">
               <div className="well">
-                <h3>요일체크</h3>
+                <h3>요일선택</h3>
                 <hr />
                 <form role="form">
                   <label className="radio-inline" data-type="mon" >
@@ -139,69 +145,76 @@ class Index extends Component {
                 </form>
               </div>
               <div className="well">
-                <h3>시간체크</h3>
+                <h3>시간선택</h3>
                 <hr />
                 <form role="form">
+                  <div className="allPeriod">
+                    <div className="checkbox">
+                      <label>
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="전체"/> 전체
+                      </label>
+                    </div>
+                  </div>
                   <div className="1period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 1교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="1교시"/> 1교시
                       </label>
                     </div>
                   </div>
                   <div className="2period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 2교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="2교시"/> 2교시
                       </label>
                     </div>
                   </div>
                   <div className="3period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 3교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="3교시"/> 3교시
                       </label>
                     </div>
                   </div>
                   <div className="4period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 4교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="4교시"/> 4교시
                       </label>
                     </div>
                   </div>
                   <div className="5period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 5교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="5교시"/> 5교시
                       </label>
                     </div>
                   </div>
                   <div className="6period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 6교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="6교시"/> 6교시
                       </label>
                     </div>
                   </div>
                   <div className="7period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 7교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="7교시"/> 7교시
                       </label>
                     </div>
                   </div>
                   <div className="8period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 8교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="8교시"/> 8교시
                       </label>
                     </div>
                   </div>
                   <div className="9period">
                     <div className="checkbox">
                       <label>
-                        <input type="checkbox" /> 9교시
+                        <input type="checkbox" name="optcheck" onClick={ this.onButtonClick } value="9교시"/> 9교시
                       </label>
                     </div>
                   </div>
@@ -235,7 +248,7 @@ class Index extends Component {
                 <thead>
                   <tr>
                     <th>학수번호</th>
-                    <th>이수번호</th>
+                    <th>이수구분</th>
                     <th>과목명</th>
                     <th>교수명</th>
                     <th>요일</th>
