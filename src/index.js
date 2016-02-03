@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
+
 import PeriodSelector from './components/PeriodSelector';
-
-
 import './index.css';
 
 var classList = [{
@@ -87,7 +86,7 @@ class Index extends Component {
     };
 
     this.setWeek = this.setWeek.bind(this);
-    this.setPeriod = this.setPeriod.bind(this);
+    this.onPeriodChange = this.onPeriodChange.bind(this);
   }
 
   setWeek(event) {
@@ -96,11 +95,8 @@ class Index extends Component {
     });
   }
 
-  setPeriod(event) {
-    console.log(event.target.value);
-    this.setState({
-      selectedTime: event.target.value,
-    });
+  onPeriodChange(result) {
+    console.log('selectedWeek', result);
   }
 
   render() {
@@ -158,7 +154,7 @@ class Index extends Component {
                   </label>
                 </form>
               </div>
-              <PeriodSelector />
+              <PeriodSelector onChange={ this.onPeriodChange } />
             </div>
             <div className="col-md-9">
               <h2>2016년 1학기 강의시간표</h2>
