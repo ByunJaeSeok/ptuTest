@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
+import timeFilter from './timeFilter';
 
 import PeriodSelector from './components/PeriodSelector';
 import './index.css';
@@ -10,6 +11,7 @@ var classList = [{
   classType: '전필',
   className: '컴퓨터구조',
   professor: '윤석규',
+  grade: '1',
   week: '수',
   classTime: [2, 3, 4],
 }, {
@@ -17,6 +19,7 @@ var classList = [{
   classType: '전선',
   className: '자료구조',
   professor: '문원식',
+    grade: '2',
   week: '목',
   classTime: [6, 7, 8],
 }, {
@@ -24,13 +27,15 @@ var classList = [{
   classType: '전필',
   className: '안드로이드',
   professor: '양단희',
+  grade: '3',
   week: '월',
-  classTime: [2, 3, 4],
+  classTime: [1, 3, 4],
 }, {
   classID: '임시4',
   classType: '교선',
   className: 'c#',
   professor: '조영희',
+  grade: '4',
   week: '월',
   classTime: [6, 7, 8],
 }, {
@@ -38,6 +43,7 @@ var classList = [{
   classType: '교선',
   className: '엑셀',
   professor: '양단희',
+  grade: '3',
   week: '월',
   classTime: [2, 3],
 }, {
@@ -45,13 +51,15 @@ var classList = [{
   classType: '전선',
   className: '운영체제',
   professor: '문원식',
+  grade: '1',
   week: '금',
-  classTime: [6, 7, 8],
+  classTime: [5, 7, 8],
 }, {
   classID: '임시7',
   classType: '전필',
   className: '안드로이드',
   professor: '양단희',
+  grade: '2',
   week: '월',
   classTime: [2, 3, 4],
 }, {
@@ -59,21 +67,10 @@ var classList = [{
   classType: '교필',
   className: '안드로이드',
   professor: '양단희',
+  grade: '4',
   week: '월',
   classTime: [2, 3, 4],
 }];
-
-function filterByValues(collection, property, values) {
-  return _.filter(collection, function(item) {
-    return !_.chain(item[property])
-      .map(function(time) {
-        return _.includes(values, time);
-      })
-      .compact()
-      .isEmpty()
-      .value();
-  });
-}
 
 class Index extends Component {
 
@@ -96,14 +93,16 @@ class Index extends Component {
   }
 
   onPeriodChange(result) {
-    console.log('selectedWeek', result);
+    console.log(result)
+    this.setState({
+      selectedTime: result,
+    });
   }
+
 
   render() {
     var selectedWeek = this.state.selectedWeek;
-    var filteredClassList = filterByValues(classList, 'classTime',
-      this.state.selectedTime);
-
+    var filteredClassList = timeFilter(classList, this.state.selectedTime);
     return (
       <div className="Index">
         <nav className="navbar navbar-default">
@@ -165,6 +164,7 @@ class Index extends Component {
                     <th>이수구분</th>
                     <th>과목명</th>
                     <th>교수명</th>
+                    <th>학년</th>
                     <th>요일</th>
                     <th>시간</th>
                   </tr>
@@ -182,6 +182,7 @@ class Index extends Component {
                         <td>{value.classType}</td>
                         <td>{value.className}</td>
                         <td>{value.professor}</td>
+                        <td>{value.grade}</td>
                         <td>{value.week}</td>
                         <td>{value.classTime.join(', ')}</td>
                       </tr>
