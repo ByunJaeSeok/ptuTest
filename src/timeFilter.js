@@ -2,11 +2,9 @@ import _ from 'lodash';
 
 function timeFilter(classList, selectedTimes) {
   const result = _.filter(classList, function (classItem) {
-    if(_.difference(selectedTimes, classItem.classTime).length==0){
-      return _.difference(selectedTimes, classItem.classTime);
-    }
+    return !_.difference(selectedTimes, classItem.classTime).length;
+    // 앞에 !를 붙혀서 0 이면 true 나머지는 false로 되게함
   });
-
   return result;
 }
 
