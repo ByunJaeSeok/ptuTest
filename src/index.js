@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReactDOM from 'react-dom';
 import _ from 'lodash';
+import AppBar from 'material-ui/lib/app-bar';
 import timeFilter from './timeFilter';
 
 import PeriodSelector from './components/PeriodSelector';
 import './index.css';
+injectTapEventPlugin();
 
 var classList = [{
   classID: '임시1',
@@ -79,7 +82,7 @@ class Index extends Component {
 
     this.state = {
       selectedWeek: 'all',
-      selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9],
     };
 
     this.setWeek = this.setWeek.bind(this);
@@ -93,7 +96,6 @@ class Index extends Component {
   }
 
   onPeriodChange(result) {
-    console.log(result)
     this.setState({
       selectedTime: result,
     });
@@ -101,33 +103,19 @@ class Index extends Component {
 
 
   render() {
-    var selectedWeek = this.state.selectedWeek;
-    var filteredClassList = timeFilter(classList, this.state.selectedTime);
+    const selectedWeek = this.state.selectedWeek;
+
+    const filteredClassList = timeFilter(classList, this.state.selectedTime);
+
     return (
       <div className="Index">
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="index.html">평택대 수강신청</a>
-            </div>
-            <ul className="nav navbar-nav">
-              <li><a className="dropdown-toggle" data-toggle="dropdown" href="#">이수구분<span className="caret"></span></a>
-                <ul className="dropdown-menu">
-                  <li><a href="#">전공</a></li>
-                  <li><a href="#">교양</a></li>
-                  <li><a href="#">PTU교양</a></li>
-                </ul>
-              </li>
-              <li><a href="timetable.html">예비시간표</a></li>
-              <li><a href="basket.html">장바구니</a></li>
-              <li><a href="#">학교 홈페이지</a></li>
-              <li><a href="#">학사정보</a></li>
-            </ul>
-          </div>
-        </nav>
+        <AppBar
+          title="Title"
+          iconClassNameRight="muidocs-icon-navigation-expand-more"
+        />
         <div className="container">
           <div className="row">
-            <div className="col-md-3">
+            <div className="col-md-12">
               <div className="well">
                 <h3>요일선택</h3>
                 <hr />
@@ -148,15 +136,26 @@ class Index extends Component {
                     <input type="radio" name="optradio" onClick={ this.setWeek } value="금"/>금
                   </label>
                   <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="all" checked/>
+                    <input type="radio" name="optradio" onClick={ this.setWeek } value="all" defaultChecked />
                     전체
                   </label>
                 </form>
               </div>
               <PeriodSelector onChange={ this.onPeriodChange } />
             </div>
-            <div className="col-md-9">
+            <div className="col-md-12">
               <h2>2016년 1학기 강의시간표</h2>
+              <select>
+                <option>전공</option>
+                <option>ptu 교양</option>
+                <option>교양</option>
+              </select>
+
+              <select>
+                <option>교양 선택</option>
+                <option>교양 필수</option>
+              </select>
+
               <table style={{width: '75%'}} className="table table-striped">
                 <thead>
                   <tr>

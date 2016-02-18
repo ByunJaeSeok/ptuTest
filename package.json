@@ -41,10 +41,11 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
-    "bootstrap": "^3.3.6",
     "jquery": "^2.2.0",
     "lodash": "^4.2.0",
+    "material-ui": "^0.14.4",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "react-tap-event-plugin": "^0.2.2"
   }
 }
