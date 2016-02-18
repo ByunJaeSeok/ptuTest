@@ -9,14 +9,17 @@ class PeriodSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      period1: false,
-      period2: false,
-      period3: false,
-      period4: false,
-      period5: false,
-      period6: false,
-      period7: false,
+      period1: true,
+      period2: true,
+      period3: true,
+      period4: true,
+      period5: true,
+      period6: true,
+      period7: true,
+      period8: true,
+      period9: true,
     };
+    // false면 체크 풀림
 
     this.setPeriod = this.setPeriod.bind(this);
     this.onChangeCombine = this.onChangeCombine.bind(this);
@@ -30,6 +33,8 @@ class PeriodSelector extends Component {
     if (this.state.period5 !== prevState.period5) return this.onChangeCombine();
     if (this.state.period6 !== prevState.period6) return this.onChangeCombine();
     if (this.state.period7 !== prevState.period7) return this.onChangeCombine();
+    if (this.state.period8 !== prevState.period8) return this.onChangeCombine();
+    if (this.state.period9 !== prevState.period9) return this.onChangeCombine();
   }
 
   onChangeCombine() {
@@ -60,6 +65,12 @@ class PeriodSelector extends Component {
       case '7':
         this.setState({ period7: event.target.checked });
         break;
+      case '8':
+        this.setState({ period8: event.target.checked });
+        break;
+      case '9':
+        this.setState({ period9: event.target.checked });
+      break;
       default:
         this.setState({
           period1: event.target.checked,
@@ -69,6 +80,8 @@ class PeriodSelector extends Component {
           period5: event.target.checked,
           period6: event.target.checked,
           period7: event.target.checked,
+          period8: event.target.checked,
+          period9: event.target.checked,
         });
     }
   }
@@ -83,12 +96,14 @@ class PeriodSelector extends Component {
     if (this.state.period5) result.push(5);
     if (this.state.period6) result.push(6);
     if (this.state.period7) result.push(7);
+    if (this.state.period8) result.push(8);
+    if (this.state.period9) result.push(9);
 
     return result;
   }
 
   render() {
-    const { period1, period2, period3, period4, period5, period6, period7 } = this.state;
+    const { period1, period2, period3, period4, period5, period6, period7, period8, period9 } = this.state;
 
     return (
       <div className="well">
@@ -100,7 +115,7 @@ class PeriodSelector extends Component {
               <label>
                 <input type="checkbox" name="optcheck"
                   onChange={ this.setPeriod } value="all"
-                  checked={ period1 && period2 && period3 && period4 && period5 && period6 && period7 }
+                  checked={ period1 && period2 && period3 && period4 && period5 && period6 && period7 && period8 && period9}
                 />
                 전체
               </label>
@@ -180,6 +195,28 @@ class PeriodSelector extends Component {
                   checked={ period7 }
                 />
               7교시
+              </label>
+            </div>
+          </div>
+          <div className="period8">
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" name="optcheck"
+                  onChange={ this.setPeriod } value="8"
+                  checked={ period8 }
+                />
+              8교시
+              </label>
+            </div>
+          </div>
+          <div className="period9">
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" name="optcheck"
+                  onChange={ this.setPeriod } value="9"
+                  checked={ period9 }
+                />
+              9교시
               </label>
             </div>
           </div>

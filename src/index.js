@@ -148,7 +148,7 @@ class Index extends Component {
                     <input type="radio" name="optradio" onClick={ this.setWeek } value="금"/>금
                   </label>
                   <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="all"/>
+                    <input type="radio" name="optradio" onClick={ this.setWeek } value="all" checked/>
                     전체
                   </label>
                 </form>
