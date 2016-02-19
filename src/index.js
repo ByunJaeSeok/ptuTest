@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import _ from 'lodash';
 import AppBar from 'material-ui/lib/app-bar';
 import timeFilter from './timeFilter';
+import WeekSelector from '/components/WeekSelector';
 
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
@@ -19,8 +20,6 @@ import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
 import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
 
-import RadioButton from 'material-ui/lib/radio-button';
-import RadioButtonGroup from 'material-ui/lib/radio-button-group';
 
 import PeriodSelector from './components/PeriodSelector';
 import './index.css';
@@ -102,15 +101,11 @@ class Index extends Component {
       selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     };
 
-    this.setWeek = this.setWeek.bind(this);
+
     this.onPeriodChange = this.onPeriodChange.bind(this);
   }
 
-  setWeek(event) {
-    this.setState({
-      selectedWeek: event.target.value,
-    });
-  }
+
 
   onPeriodChange(result) {
     console.log(result)
@@ -324,51 +319,8 @@ class Index extends Component {
         </div>
         <div className="container">
           <div className="row">
-            <div className="col-md-12">
               <div className="well">
-                <h3>요일선택</h3>
-                <hr />
 
-                  <div>
-                      <RadioButtonGroup name="shipSpeed" defaultSelected="all">
-                        <RadioButton
-                          value="all"
-                          label="전체"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                        <RadioButton
-                          value="월"
-                          label="월"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                        <RadioButton
-                          value="화"
-                          label="화"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                        <RadioButton
-                          value="수"
-                          label="수"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                        <RadioButton
-                          value="목"
-                          label="목"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                        <RadioButton
-                          value="금"
-                          label="금"
-                          onClick={ this.setWeek }
-                          style={{ float: "left", width: "5%" }}
-                        />
-                      </RadioButtonGroup>
-                    </div>
               </div>
               <PeriodSelector onChange={ this.onPeriodChange } />
             </div>
