@@ -5,6 +5,23 @@ import _ from 'lodash';
 import AppBar from 'material-ui/lib/app-bar';
 import timeFilter from './timeFilter';
 
+import Table from 'material-ui/lib/table/table';
+import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
+import TableRow from 'material-ui/lib/table/table-row';
+import TableHeader from 'material-ui/lib/table/table-header';
+import TableRowColumn from 'material-ui/lib/table/table-row-column';
+import TableBody from 'material-ui/lib/table/table-body';
+
+import List from 'material-ui/lib/lists/list';
+import ListItem from 'material-ui/lib/lists/list-item';
+import ActionGrade from 'material-ui/lib/svg-icons/action/grade';
+import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
+import ContentDrafts from 'material-ui/lib/svg-icons/content/drafts';
+import ContentSend from 'material-ui/lib/svg-icons/content/send';
+
+import RadioButton from 'material-ui/lib/radio-button';
+import RadioButtonGroup from 'material-ui/lib/radio-button-group';
+
 import PeriodSelector from './components/PeriodSelector';
 import './index.css';
 injectTapEventPlugin();
@@ -22,7 +39,7 @@ var classList = [{
   classType: '전선',
   className: '자료구조',
   professor: '문원식',
-    grade: '2',
+  grade: '2',
   week: '목',
   classTime: [6, 7, 8],
 }, {
@@ -82,7 +99,7 @@ class Index extends Component {
 
     this.state = {
       selectedWeek: 'all',
-      selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     };
 
     this.setWeek = this.setWeek.bind(this);
@@ -96,6 +113,7 @@ class Index extends Component {
   }
 
   onPeriodChange(result) {
+    console.log(result)
     this.setState({
       selectedTime: result,
     });
@@ -103,93 +121,285 @@ class Index extends Component {
 
 
   render() {
-    const selectedWeek = this.state.selectedWeek;
-
-    const filteredClassList = timeFilter(classList, this.state.selectedTime);
-
+    var selectedWeek = this.state.selectedWeek;
+    var filteredClassList = timeFilter(classList, this.state.selectedTime);
     return (
       <div className="Index">
         <AppBar
-          title="Title"
+          title="평택대 강의계획서"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
+          iconClassNameLeft="false"
         />
+      <List subheader="시간표선택">
+        <ListItem
+          primaryText="전공"
+          leftIcon={<ContentInbox />}
+          primaryTogglesNestedList
+          nestedItems={[
+            <ListItem
+              key={1}
+              primaryText="신학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={2}
+              primaryText="국어국문학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={3}
+              primaryText="음악학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={4}
+              primaryText="사회복지학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={5}
+              primaryText="경영학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={6}
+              primaryText="아동청소년복지학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={7}
+              primaryText="행정학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={8}
+              primaryText="시각디자인학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={9}
+              primaryText="도시및부동산개발학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={10}
+              primaryText="컴퓨터학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={11}
+              primaryText="정보통신학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={12}
+              primaryText="디지털응용정보학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={13}
+              primaryText="미국학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={14}
+              primaryText="중국학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={15}
+              primaryText="일본학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={16}
+              primaryText="재활복지학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={17}
+              primaryText="광고홍보학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={18}
+              primaryText="실용음악학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={19}
+              primaryText="방송연예학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={20}
+              primaryText="영상디자인학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={21}
+              primaryText="패션디자인및브랜딩학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={22}
+              primaryText="아동·청소년복지학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={23}
+              primaryText="무역물류학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={24}
+              primaryText="환경융합시스템학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={25}
+              primaryText="데이터정보학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={26}
+              primaryText="환경융합시스템학과"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={27}
+              primaryText="환황해권물류지식인융복합"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={28}
+              primaryText="창업융복합"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={29}
+              primaryText="초협업융복합"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={30}
+              primaryText="다문화복지융복합"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={31}
+              primaryText="글로벌리더스융복합"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={32}
+              primaryText="스토리텔링융복합"
+              leftIcon={<ContentSend />}
+            />,
+          ]}
+        />
+        <ListItem primaryText="교양"
+          leftIcon={<ContentInbox />}
+          primaryTogglesNestedList
+          nestedItems={[
+            <ListItem
+              key={1}
+              primaryText="교양필수"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={2}
+              primaryText="교양선택"
+              leftIcon={<ContentSend />}
+            />,
+            <ListItem
+              key={3}
+              primaryText="PTU교양"
+              leftIcon={<ContentSend />}
+            />,
+          ]}
+        />
+      </List>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="well">
                 <h3>요일선택</h3>
                 <hr />
-                <form role="form">
-                  <label className="radio-inline" data-type="mon" >
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="월"/>월
-                  </label>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="화"/>화
-                  </label>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="수"/>수
-                  </label>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="목"/>목
-                  </label>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="금"/>금
-                  </label>
-                  <label className="radio-inline">
-                    <input type="radio" name="optradio" onClick={ this.setWeek } value="all" defaultChecked />
-                    전체
-                  </label>
-                </form>
+
+                  <div>
+                      <RadioButtonGroup name="shipSpeed" defaultSelected="all">
+                        <RadioButton
+                          value="all"
+                          label="전체"
+                          onClick={ this.setWeek }
+                        />
+                        <RadioButton
+                          value="월"
+                          label="월"
+                          onClick={ this.setWeek }
+                        />
+                        <RadioButton
+                          value="화"
+                          label="화"
+                          onClick={ this.setWeek }
+                        />
+                        <RadioButton
+                          value="수"
+                          label="수"
+                          onClick={ this.setWeek }
+                        />
+                        <RadioButton
+                          value="목"
+                          label="목"
+                          onClick={ this.setWeek }
+                        />
+                        <RadioButton
+                          value="금"
+                          label="금"
+                          onClick={ this.setWeek }
+                        />
+                      </RadioButtonGroup>
+                    </div>
               </div>
               <PeriodSelector onChange={ this.onPeriodChange } />
             </div>
             <div className="col-md-12">
               <h2>2016년 1학기 강의시간표</h2>
-              <select>
-                <option>전공</option>
-                <option>ptu 교양</option>
-                <option>교양</option>
-              </select>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHeaderColumn>학수번호</TableHeaderColumn>
+                      <TableHeaderColumn>이수구분</TableHeaderColumn>
+                      <TableHeaderColumn>과목명</TableHeaderColumn>
+                      <TableHeaderColumn>교수명</TableHeaderColumn>
+                      <TableHeaderColumn>학년</TableHeaderColumn>
+                      <TableHeaderColumn>요일</TableHeaderColumn>
+                      <TableHeaderColumn>시간</TableHeaderColumn>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {
+                    _.map(filteredClassList, function(value, index) {
+                      if (value.week !== selectedWeek && selectedWeek !== 'all') {
+                        return null;
+                      }
 
-              <select>
-                <option>교양 선택</option>
-                <option>교양 필수</option>
-              </select>
-
-              <table style={{width: '75%'}} className="table table-striped">
-                <thead>
-                  <tr>
-                    <th>학수번호</th>
-                    <th>이수구분</th>
-                    <th>과목명</th>
-                    <th>교수명</th>
-                    <th>학년</th>
-                    <th>요일</th>
-                    <th>시간</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {
-                _.map(filteredClassList, function(value, index) {
-                  if (value.week !== selectedWeek && selectedWeek !== 'all') {
-                    return null;
-                  }
-
-                  return (
-                      <tr key={index}>
-                        <td>{value.classID}</td>
-                        <td>{value.classType}</td>
-                        <td>{value.className}</td>
-                        <td>{value.professor}</td>
-                        <td>{value.grade}</td>
-                        <td>{value.week}</td>
-                        <td>{value.classTime.join(', ')}</td>
-                      </tr>
-                    );
-                  })
-                }
-                </tbody>
-              </table>
+                      return (
+                          <TableRow key={index}>
+                            <TableRowColumn>{value.classID}</TableRowColumn>
+                            <TableRowColumn>{value.classType}</TableRowColumn>
+                            <TableRowColumn>{value.className}</TableRowColumn>
+                            <TableRowColumn>{value.professor}</TableRowColumn>
+                            <TableRowColumn>{value.grade}</TableRowColumn>
+                            <TableRowColumn>{value.week}</TableRowColumn>
+                            <TableRowColumn>{value.classTime.join(', ')}</TableRowColumn>
+                          </TableRow>
+                        );
+                    })
+                    }
+                  </TableBody>
+                </Table>
             </div>
           </div>
         </div>

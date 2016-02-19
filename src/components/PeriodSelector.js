@@ -1,8 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import ReactDOM from 'react-dom';
 
+import Checkbox from 'material-ui/lib/checkbox';
+import ActionFavorite from 'material-ui/lib/svg-icons/action/favorite';
+import ActionFavoriteBorder from 'material-ui/lib/svg-icons/action/favorite-border';
+
 const propTypes = {
 };
+
+
+
 
 class PeriodSelector extends Component {
 
@@ -109,119 +116,182 @@ class PeriodSelector extends Component {
       <div className="well">
         <h3>시간선택</h3>
         <hr />
-        <form role="form" ref="form">
-          <div className="allPeriod">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="all"
-                  checked={ period1 && period2 && period3 && period4 && period5 && period6 && period7 && period8 && period9}
-                />
-                전체
-              </label>
-            </div>
-          </div>
-          <div className="period1">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="1"
-                  checked={ period1 }
-                />
-                1교시
-              </label>
-            </div>
-          </div>
-          <div className="period2">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="2"
-                  checked={ period2 }
-                />
-                2교시
-              </label>
-            </div>
-          </div>
-          <div className="period3">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="3"
-                  checked={ period3 }
-                />
-              3교시
-              </label>
-            </div>
-          </div>
-          <div className="period4">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="4"
-                  checked={ period4 }
-                />
-              4교시
-              </label>
-            </div>
-          </div>
-          <div className="period5">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="5"
-                  checked={ period5 }
-                />
-              5교시
-              </label>
-            </div>
-          </div>
-          <div className="period6">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="6"
-                  checked={ period6 }
-                />
-              6교시
-              </label>
-            </div>
-          </div>
-          <div className="period7">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="7"
-                  checked={ period7 }
-                />
-              7교시
-              </label>
-            </div>
-          </div>
-          <div className="period8">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="8"
-                  checked={ period8 }
-                />
-              8교시
-              </label>
-            </div>
-          </div>
-          <div className="period9">
-            <div className="checkbox">
-              <label>
-                <input type="checkbox" name="optcheck"
-                  onChange={ this.setPeriod } value="9"
-                  checked={ period9 }
-                />
-              9교시
-              </label>
-            </div>
-          </div>
-        </form>
-      </div>
+      <Checkbox
+        label="전체"
+        name="optcheck"
+        defaultChecked={false}
+        onCheck={ this.setPeriod } value="all"
+        checked={ period1 && period2 && period3 && period4 && period5 && period6 && period7 && period8 && period9}
+      />
+      <Checkbox
+        label="1교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="1"
+        checked={ period1 }
+      />
+      <Checkbox
+        label="2교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="2"
+        checked={ period2 }
+      />
+      <Checkbox
+        label="3교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="3"
+        checked={ period3 }
+      />
+      <Checkbox
+        label="4교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="4"
+        checked={ period4 }
+      />
+      <Checkbox
+        label="5교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="5"
+        checked={ period5 }
+      />
+      <Checkbox
+        label="6교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="6"
+        checked={ period6 }
+      />
+      <Checkbox
+        label="7교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="7"
+        checked={ period7 }
+      />
+      <Checkbox
+        label="8교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="8"
+        checked={ period8 }
+      />
+      <Checkbox
+        label="9교시"
+        name="optcheck"
+        onCheck={ this.setPeriod } value="9"
+        checked={ period9 }
+      />
+    </div>
+
+      //   <form role="form" ref="form">
+      //     <div className="allPeriod">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="all"
+      //             checked={ period1 && period2 && period3 && period4 && period5 && period6 && period7 && period8 && period9}
+      //           />
+      //           전체
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period1">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="1"
+      //             checked={ period1 }
+      //           />
+      //           1교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period2">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="2"
+      //             checked={ period2 }
+      //           />
+      //           2교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period3">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="3"
+      //             checked={ period3 }
+      //           />
+      //         3교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period4">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="4"
+      //             checked={ period4 }
+      //           />
+      //         4교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period5">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="5"
+      //             checked={ period5 }
+      //           />
+      //         5교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period6">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="6"
+      //             checked={ period6 }
+      //           />
+      //         6교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period7">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="7"
+      //             checked={ period7 }
+      //           />
+      //         7교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period8">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="8"
+      //             checked={ period8 }
+      //           />
+      //         8교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //     <div className="period9">
+      //       <div className="checkbox">
+      //         <label>
+      //           <input type="checkbox" name="optcheck"
+      //             onChange={ this.setPeriod } value="9"
+      //             checked={ period9 }
+      //           />
+      //         9교시
+      //         </label>
+      //       </div>
+      //     </div>
+      //   </form>
+      // </div>
     );
   }
 
