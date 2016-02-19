@@ -4,6 +4,7 @@ import RadioButton from 'material-ui/lib/radio-button';
 import RadioButtonGroup from 'material-ui/lib/radio-button-group';
 
 const propTypes = {
+  onChnage: PropTypes.func,
 };
 
 const defaultProps = {
@@ -24,6 +25,10 @@ class WeekSelector extends Component {
     this.setState({
       selectedWeek: event.target.value,
     });
+
+    if (this.props.onChnage) {
+      this.props.onChnage(event.target.value);
+    }
   }
 
   render() {

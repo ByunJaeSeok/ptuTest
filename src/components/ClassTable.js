@@ -10,11 +10,6 @@ import TableBody from 'material-ui/lib/table/table-body';
 
 import timeFilter from '../timeFilter';
 
-const propTypes = {
-};
-
-const defaultProps = {
-};
 var classList = [{
   classID: '임시1',
   classType: '전필',
@@ -81,19 +76,26 @@ var classList = [{
   classTime: [2, 3, 4],
 }];
 
+const propTypes = {
+  selectedWeek: PropTypes.string,
+  selectedTime: PropTypes.array,
+};
+
+const defaultProps = {
+  selectedWeek: 'all',
+  selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+};
+
 class ClassTable extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selectedWeek: 'all',
-      selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    };
   }
 
   render() {
-    var selectedWeek = this.state.selectedWeek;
-    var filteredClassList = timeFilter(classList, this.state.selectedTime);
+    const selectedWeek = this.props.selectedWeek;
+    const filteredClassList = timeFilter(classList, this.props.selectedTime);
+
     return (
       <div>
         <h2>2016년 1학기 강의시간표</h2>
@@ -111,12 +113,12 @@ class ClassTable extends Component {
             </TableHeader>
             <TableBody>
               {
-              _.map(filteredClassList, function(value, index) {
-                if (value.week !== selectedWeek && selectedWeek !== 'all') {
-                  return null;
-                }
+                _.map(filteredClassList, function (value, index) {
+                  if (value.week !== selectedWeek && selectedWeek !== 'all') {
+                    return null;
+                  }
 
-                return (
+                  return (
                     <TableRow key={index}>
                       <TableRowColumn>{value.classID}</TableRowColumn>
                       <TableRowColumn>{value.classType}</TableRowColumn>
@@ -127,7 +129,7 @@ class ClassTable extends Component {
                       <TableRowColumn>{value.classTime.join(', ')}</TableRowColumn>
                     </TableRow>
                   );
-              })
+                })
               }
             </TableBody>
           </Table>

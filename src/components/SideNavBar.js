@@ -1,9 +1,19 @@
 import React, { PropTypes, Component } from 'react';
 
+import LeftNav from 'material-ui/lib/left-nav';
 import List from 'material-ui/lib/lists/list';
 import ListItem from 'material-ui/lib/lists/list-item';
 import ContentInbox from 'material-ui/lib/svg-icons/content/inbox';
 import ContentSend from 'material-ui/lib/svg-icons/content/send';
+import zIndex from 'material-ui/lib/styles/zIndex';
+import { SelectableContainerEnhance } from 'material-ui/lib/hoc/selectable-enhance';
+import {
+  Colors,
+  Spacing,
+  Typography,
+} from 'material-ui/lib/styles';
+
+const SelectableList = SelectableContainerEnhance(List);
 
 const propTypes = {
 };
@@ -17,21 +27,64 @@ class SideNavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedIndex: 'theology',
+    };
 
+    this.handleUpdateSelectedIndex = this.handleUpdateSelectedIndex.bind(this);
+  }
+
+  getStyles() {
+    return {
+      logo: {
+        cursor: 'pointer',
+        fontSize: 24,
+        color: Typography.textFullWhite,
+        lineHeight: `${Spacing.desktopKeylineIncrement}px`,
+        fontWeight: Typography.fontWeightLight,
+        backgroundColor: Colors.cyan500,
+        paddingLeft: Spacing.desktopGutter,
+        marginBottom: 8,
+      },
     };
   }
 
+  handleUpdateSelectedIndex(element, index) {
+    console.log(index);
+    this.setState({
+      selectedIndex: index,
+    });
+  }
+
   render() {
+    const styles = this.getStyles();
+
     return (
-      <div style={{ width: '300px' }}>
-        <List subheader="시간표선택">
+      <LeftNav
+        style={{
+          zIndex: 1,
+          width: '310px',
+        }}
+        docked
+        open
+        containerStyle={{ zIndex: zIndex.leftNav - 100 }}
+      >
+        <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
+          평택대학교 수강신청
+        </div>
+        <SelectableList
+          valueLink={{
+            value: this.state.selectedItem,
+            requestChange: this.handleUpdateSelectedIndex,
+          }}
+        >
           <ListItem
+            value=""
             primaryText="전공"
             leftIcon={<ContentInbox />}
             primaryTogglesNestedList
             nestedItems={[
               <ListItem
-                key={1}
+                value="theology"
                 primaryText="신학과"
                 leftIcon={<ContentSend />}
               />,
@@ -213,8 +266,8 @@ class SideNavBar extends Component {
               />,
             ]}
           />
-        </List>
-      </div>
+        </SelectableList>
+      </LeftNav>
     );
   }
 
@@ -225,3 +278,10 @@ SideNavBar.defaultProps = defaultProps;
 
 
 export default SideNavBar;
+
+//
+//
+//
+//   <List subheader="시간표선택">
+//       </List>
+// </div>
