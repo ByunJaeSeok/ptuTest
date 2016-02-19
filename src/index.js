@@ -19,20 +19,27 @@ class Index extends Component {
     this.state = {
       selectedTime: [],
       selectedWeek: 'all',
+      selectedDepartment: 'theology',
     };
     this.onPeriodChange = this.onPeriodChange.bind(this);
     this.onWeekChange = this.onWeekChange.bind(this);
   }
 
-  onPeriodChange(result) {
+  onPeriodChange(value) {
     this.setState({
-      selectedTime: result,
+      selectedTime: value,
     });
   }
 
-  onWeekChange(result) {
+  onWeekChange(value) {
     this.setState({
-      selectedWeek: result,
+      selectedWeek: value,
+    });
+  }
+
+  onSidebarChange(value) {
+    this.setState({
+      selectedDepartment: value,
     });
   }
 
@@ -54,7 +61,7 @@ class Index extends Component {
   render() {
     const selectedTime = this.state.selectedTime;
     const selectedWeek = this.state.selectedWeek;
-
+    const selectedDepartment = this.state.selectedDepartment;
 
     const { bodyWrapper, body, appBar } = this.getStyles();
 
@@ -66,7 +73,10 @@ class Index extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           iconClassNameLeft="false"
         />
-        <SideNavBar />
+        <SideNavBar
+          selectedDepartment={selectedDepartment}
+          onSidebarChange={this.onSidebarChange}
+        />
         <FullWidthSection style={bodyWrapper}>
           <div style={body}>
             <h1>컴퓨터학과</h1>
@@ -76,6 +86,7 @@ class Index extends Component {
             <PeriodSelector onChange={ this.onPeriodChange } />
             <br />
             <ClassTable
+              selectedDepartment={selectedDepartment}
               selectedWeek={selectedWeek}
               selectedTime={selectedTime}
             />

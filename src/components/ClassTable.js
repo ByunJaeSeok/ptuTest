@@ -77,6 +77,7 @@ var classList = [{
 }];
 
 const propTypes = {
+  selectedDepartment: PropTypes.string,
   selectedWeek: PropTypes.string,
   selectedTime: PropTypes.array,
 };
