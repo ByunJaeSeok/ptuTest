@@ -33,5 +33,7 @@ export const majorList = {
 }
 
 export const nonMajorList = {
-
+  options: '교양선택',
+  requirements: '교양필수',
+  ptu: 'PTU교양',
 }

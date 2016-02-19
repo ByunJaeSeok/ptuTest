@@ -101,25 +101,20 @@ class SideNavBar extends Component {
             }
           />
           <ListItem primaryText="교양"
+            value=""
             leftIcon={<ContentInbox />}
             primaryTogglesNestedList
-            nestedItems={[
-              <ListItem
-                key={1}
-                primaryText="교양필수"
-                leftIcon={<ContentSend />}
-              />,
-              <ListItem
-                key={2}
-                primaryText="교양선택"
-                leftIcon={<ContentSend />}
-              />,
-              <ListItem
-                key={3}
-                primaryText="PTU교양"
-                leftIcon={<ContentSend />}
-              />,
-            ]}
+            nestedItems={
+              _.map(nonMajorList, (korean, value) => {
+                return (
+                  <ListItem
+                    value={value}
+                    primaryText={korean}
+                    leftIcon={<ContentSend />}
+                  />
+                );
+              })
+            }
           />
         </SelectableList>
       </LeftNav>
