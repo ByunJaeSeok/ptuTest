@@ -6,7 +6,7 @@ module.exports = {
     './src/index.js',
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js',
     publicPath: '/',
   },
@@ -30,6 +30,7 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
+      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({

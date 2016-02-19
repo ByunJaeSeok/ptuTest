@@ -30,10 +30,10 @@ export const majorList = {
   theology: '신학과',
   UrbanRealEstate: '도시및부동산개발학과',
   VisualArtDesign: '시각디자인학과',
-}
+};
 
 export const nonMajorList = {
   options: '교양선택',
   requirements: '교양필수',
   ptu: 'PTU교양',
-}
+};

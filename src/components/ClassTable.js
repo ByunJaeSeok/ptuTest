@@ -1,81 +1,15 @@
 import React, { PropTypes, Component } from 'react';
 import _ from 'lodash';
-
+import 'whatwg-fetch';
 import Table from 'material-ui/lib/table/table';
 import TableHeaderColumn from 'material-ui/lib/table/table-header-column';
 import TableRow from 'material-ui/lib/table/table-row';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
+import CircularProgress from 'material-ui/lib/circular-progress';
 
 import timeFilter from '../timeFilter';
-
-var classList = [{
-  classID: '임시1',
-  classType: '전필',
-  className: '컴퓨터구조',
-  professor: '윤석규',
-  grade: '1',
-  week: '수',
-  classTime: [2, 3, 4],
-}, {
-  classID: '임시2',
-  classType: '전선',
-  className: '자료구조',
-  professor: '문원식',
-  grade: '2',
-  week: '목',
-  classTime: [6, 7, 8],
-}, {
-  classID: '임시3',
-  classType: '전필',
-  className: '안드로이드',
-  professor: '양단희',
-  grade: '3',
-  week: '월',
-  classTime: [1, 3, 4],
-}, {
-  classID: '임시4',
-  classType: '교선',
-  className: 'c#',
-  professor: '조영희',
-  grade: '4',
-  week: '월',
-  classTime: [6, 7, 8],
-}, {
-  classID: '임시5',
-  classType: '교선',
-  className: '엑셀',
-  professor: '양단희',
-  grade: '3',
-  week: '월',
-  classTime: [2, 3],
-}, {
-  classID: '임시6',
-  classType: '전선',
-  className: '운영체제',
-  professor: '문원식',
-  grade: '1',
-  week: '금',
-  classTime: [5, 7, 8],
-}, {
-  classID: '임시7',
-  classType: '전필',
-  className: '안드로이드',
-  professor: '양단희',
-  grade: '2',
-  week: '월',
-  classTime: [2, 3, 4],
-}, {
-  classID: '임시8',
-  classType: '교필',
-  className: '안드로이드',
-  professor: '양단희',
-  grade: '4',
-  week: '월',
-  classTime: [2, 3, 4],
-}];
-
 const propTypes = {
   selectedDepartment: PropTypes.string,
   selectedWeek: PropTypes.string,
@@ -87,18 +21,76 @@ const defaultProps = {
   selectedTime: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 };
 
+const styles = {
+  isSending: {
+    position: 'fixed',
+    top: '0px',
+    left: '0px',
+    background: 'rgba(255,255,255,0.7)',
+    width: '100%',
+    height: '100%',
+    zIndex: '10',
+  },
+  circularProgress: {
+    position: 'absolute',
+    top: '50%',
+    right: '40%',
+  },
+};
+
 class ClassTable extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      classList: [],
+      isLoading: false,
+    };
+  }
+
+  componentDidMount() {
+    const selectedDepartment = this.props.selectedDepartment;
+    this.fetchData(selectedDepartment);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.fetchData(nextProps.selectedDepartment);
+  }
+
+  fetchData(selectedDepartment) {
+    this.setState({ isLoading: true });
+    fetch(`/data/${selectedDepartment}.json`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((json) => {
+        this.setState({
+          classList: json,
+          isLoading: false,
+        });
+      })
+      .catch(() => {
+        this.setState({ isLoading: false });
+      });
   }
 
   render() {
     const selectedWeek = this.props.selectedWeek;
+    const { classList, isLoading } = this.state;
     const filteredClassList = timeFilter(classList, this.props.selectedTime);
 
     return (
       <div>
+        { isLoading ?
+          <div style={ styles.isSending }>
+            <CircularProgress
+              size={2}
+              style={ styles.circularProgress }
+            />
+          </div>
+        : null }
+
         <h2>2016년 1학기 강의시간표</h2>
           <Table>
             <TableHeader>

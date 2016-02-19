@@ -7,6 +7,7 @@ import PeriodSelector from './components/PeriodSelector';
 import WeekSelector from './components/WeekSelector';
 import ClassTable from './components/ClassTable';
 import FullWidthSection from './components/FullWidthSection';
+import { majorList, nonMajorList } from './constant';
 import './index.css';
 
 injectTapEventPlugin();
@@ -23,6 +24,7 @@ class Index extends Component {
     };
     this.onPeriodChange = this.onPeriodChange.bind(this);
     this.onWeekChange = this.onWeekChange.bind(this);
+    this.onSidebarChange = this.onSidebarChange.bind(this);
   }
 
   onPeriodChange(value) {
@@ -79,7 +81,7 @@ class Index extends Component {
         />
         <FullWidthSection style={bodyWrapper}>
           <div style={body}>
-            <h1>컴퓨터학과</h1>
+            <h1>{majorList[selectedDepartment]}</h1>
             <br />
             <WeekSelector onChnage={ this.onWeekChange } />
             <br />
