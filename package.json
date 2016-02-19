@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register --timeout 20000 --watch ./src/**/__tests__/*-test.js",
-    "start": "webpack-dev-server --content-base build/"
+    "start": "webpack-dev-server --content-base build/",
+    "build": "webpack --config webpack.build.js"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,7 @@
     "webpack-dev-server": "^1.14.0"
   },
   "dependencies": {
+    "fetch": "^1.0.1",
     "jquery": "^2.2.0",
     "lodash": "^4.2.0",
     "material-ui": "^0.14.4",
