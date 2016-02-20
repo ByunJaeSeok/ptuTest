@@ -117,7 +117,7 @@ class ClassTable extends Component {
     } = this.props;
     const { classList, isLoading } = this.state;
     const filteredClassList = timeFilter(classList, selectedTime);
-    console.log(tableWidth, tableHeight);
+
     return (
       <div>
         { isLoading ?

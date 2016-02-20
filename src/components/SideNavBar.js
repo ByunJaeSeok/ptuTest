@@ -31,9 +31,12 @@ class SideNavBar extends Component {
     super(props);
     this.state = {
       selectedDepartment: props.selectedDepartment,
+      open: false,
     };
 
     this.handleUpdateSelectedIndex = this.handleUpdateSelectedIndex.bind(this);
+    this.toggleLeftNav = this.toggleLeftNav.bind(this);
+    this.setOpen = this.setOpen.bind(this);
   }
 
   getStyles() {
@@ -51,9 +54,14 @@ class SideNavBar extends Component {
     };
   }
 
+  setOpen(open) {
+    this.setState({ open });
+  }
+
   handleUpdateSelectedIndex(element, index) {
     this.setState({
       selectedDepartment: index,
+      open: false,
     });
 
     if (this.props.onSidebarChange) {
@@ -61,17 +69,22 @@ class SideNavBar extends Component {
     }
   }
 
+  toggleLeftNav() {
+    this.setOpen(!this.state.open);
+  }
+
   render() {
+    const { open } = this.state;
     const styles = this.getStyles();
 
     return (
       <LeftNav
         style={{
-          zIndex: 1,
-          width: '310px',
+          zIndex: 2,
+          width: open ? '310px' : '0px',
         }}
-        docked
-        open
+        open={open}
+        onRequestChange={this.setOpen}
         containerStyle={{ zIndex: zIndex.leftNav - 100 }}
       >
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>

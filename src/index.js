@@ -24,12 +24,14 @@ class Index extends Component {
       selectedTime: [],
       selectedWeek: 'all',
       selectedDepartment: 'theology',
+      leftNavOpen: false,
     };
     this.onPeriodChange = this.onPeriodChange.bind(this);
     this.onWeekChange = this.onWeekChange.bind(this);
     this.onSidebarChange = this.onSidebarChange.bind(this);
     this.onWindowResize = this.onWindowResize.bind(this);
     this.onResize = this.onResize.bind(this);
+    this.handleTouchTapLeftIconButton = this.handleTouchTapLeftIconButton.bind(this);
   }
 
   componentDidMount() {
@@ -89,11 +91,10 @@ class Index extends Component {
     };
   }
 
+  handleTouchTapLeftIconButton() {
+    this.refs.sideNavBar.toggleLeftNav();
+  }
 
-  // <SideNavBar
-  //   selectedDepartment={selectedDepartment}
-  //   onSidebarChange={this.onSidebarChange}
-  // />
   render() {
     const {
       selectedTime,
@@ -101,6 +102,7 @@ class Index extends Component {
       selectedDepartment,
       tableWidth,
       tableHeight,
+      leftNavOpen,
     } = this.state;
 
     const { bodyWrapper, body, appBar } = this.getStyles();
@@ -111,10 +113,18 @@ class Index extends Component {
     return (
       <div className="Index">
         <AppBar
+          onLeftIconButtonTouchTap={this.handleTouchTapLeftIconButton}
+          showMenuIconButton
           style={appBar}
-          title="평택대 강의계획서"
+          title="평택대학교 강의시간표"
           iconClassNameRight="muidocs-icon-navigation-expand-more"
-          iconClassNameLeft="false"
+        />
+
+        <SideNavBar
+          ref="sideNavBar"
+          open={leftNavOpen}
+          selectedDepartment={selectedDepartment}
+          onSidebarChange={this.onSidebarChange}
         />
 
         <FullWidthSection style={bodyWrapper}>
