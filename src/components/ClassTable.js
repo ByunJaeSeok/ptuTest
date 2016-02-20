@@ -7,7 +7,6 @@ import TableRow from 'material-ui/lib/table/table-row';
 import TableHeader from 'material-ui/lib/table/table-header';
 import TableRowColumn from 'material-ui/lib/table/table-row-column';
 import TableBody from 'material-ui/lib/table/table-body';
-import CircularProgress from 'material-ui/lib/circular-progress';
 
 import timeFilter from '../timeFilter';
 const propTypes = {
@@ -31,12 +30,13 @@ const styles = {
     height: '100%',
     zIndex: '10',
   },
-  circularProgress: {
-    position: 'absolute',
-    top: '50%',
-    right: '40%',
+  spinner: {
+    width: '200px',
+    height: '200px',
+    top: '30%',
   },
 };
+
 
 class ClassTable extends Component {
 
@@ -60,7 +60,7 @@ class ClassTable extends Component {
 
   fetchData(selectedDepartment) {
     this.setState({ isLoading: true });
-    fetch(`/data/${selectedDepartment}.json`)
+    fetch(`data/${selectedDepartment}.json`)
       .then((response) => {
         return response.json();
       })
@@ -84,10 +84,20 @@ class ClassTable extends Component {
       <div>
         { isLoading ?
           <div style={ styles.isSending }>
-            <CircularProgress
-              size={2}
-              style={ styles.circularProgress }
-            />
+            <div style={ styles.spinner } className="sk-fading-circle">
+              <div className="sk-circle1 sk-circle" />
+              <div className="sk-circle2 sk-circle" />
+              <div className="sk-circle3 sk-circle" />
+              <div className="sk-circle4 sk-circle" />
+              <div className="sk-circle5 sk-circle" />
+              <div className="sk-circle6 sk-circle" />
+              <div className="sk-circle7 sk-circle" />
+              <div className="sk-circle8 sk-circle" />
+              <div className="sk-circle9 sk-circle" />
+              <div className="sk-circle10 sk-circle" />
+              <div className="sk-circle11 sk-circle" />
+              <div className="sk-circle12 sk-circle" />
+            </div>
           </div>
         : null }
 

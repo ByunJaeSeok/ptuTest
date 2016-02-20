@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+import _ from 'lodash';
 import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import ReactDOM from 'react-dom';
@@ -66,7 +68,10 @@ class Index extends Component {
     const selectedDepartment = this.state.selectedDepartment;
 
     const { bodyWrapper, body, appBar } = this.getStyles();
-
+    let departmentTitle = majorList[selectedDepartment];
+    if (_.isUndefined(departmentTitle)) {
+      departmentTitle = nonMajorList[selectedDepartment];
+    }
     return (
       <div className="Index">
         <AppBar
@@ -81,7 +86,7 @@ class Index extends Component {
         />
         <FullWidthSection style={bodyWrapper}>
           <div style={body}>
-            <h1>{majorList[selectedDepartment]}</h1>
+            <h1>{departmentTitle}</h1>
             <br />
             <WeekSelector onChnage={ this.onWeekChange } />
             <br />
