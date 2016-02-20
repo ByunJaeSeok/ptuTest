@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import 'fixed-data-table/dist/fixed-data-table.css';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -27,6 +28,35 @@ class Index extends Component {
     this.onPeriodChange = this.onPeriodChange.bind(this);
     this.onWeekChange = this.onWeekChange.bind(this);
     this.onSidebarChange = this.onSidebarChange.bind(this);
+    this.onWindowResize = this.onWindowResize.bind(this);
+    this.onResize = this.onResize.bind(this);
+  }
+
+  componentDidMount() {
+    this.onResize();
+    const win = window;
+    if (win.addEventListener) {
+      win.addEventListener('resize', this.onResize, false);
+    } else if (win.attachEvent) {
+      win.attachEvent('onresize', this.onResize);
+    } else {
+      win.onresize = this.onResize;
+    }
+  }
+
+  onResize() {
+    clearTimeout(this.updateTimer);
+    this.updateTimer = setTimeout(this.onWindowResize, 16);
+  }
+
+  onWindowResize() {
+    const win = window;
+
+    const widthOffset = win.innerWidth < 680 ? 0 : 108;
+    this.setState({
+      tableWidth: win.innerWidth - widthOffset,
+      tableHeight: win.innerHeight - 200,
+    });
   }
 
   onPeriodChange(value) {
@@ -53,19 +83,25 @@ class Index extends Component {
         position: 'fixed',
         top: 0,
       },
-      bodyWrapper: {
-        paddingLeft: '310px',
-      },
       body: {
-        margin: '48px 72px',
+        margin: '48px 20px',
       },
     };
   }
 
+
+  // <SideNavBar
+  //   selectedDepartment={selectedDepartment}
+  //   onSidebarChange={this.onSidebarChange}
+  // />
   render() {
-    const selectedTime = this.state.selectedTime;
-    const selectedWeek = this.state.selectedWeek;
-    const selectedDepartment = this.state.selectedDepartment;
+    const {
+      selectedTime,
+      selectedWeek,
+      selectedDepartment,
+      tableWidth,
+      tableHeight,
+    } = this.state;
 
     const { bodyWrapper, body, appBar } = this.getStyles();
     let departmentTitle = majorList[selectedDepartment];
@@ -80,10 +116,7 @@ class Index extends Component {
           iconClassNameRight="muidocs-icon-navigation-expand-more"
           iconClassNameLeft="false"
         />
-        <SideNavBar
-          selectedDepartment={selectedDepartment}
-          onSidebarChange={this.onSidebarChange}
-        />
+
         <FullWidthSection style={bodyWrapper}>
           <div style={body}>
             <h1>{departmentTitle}</h1>
@@ -96,6 +129,8 @@ class Index extends Component {
               selectedDepartment={selectedDepartment}
               selectedWeek={selectedWeek}
               selectedTime={selectedTime}
+              tableWidth={tableWidth}
+              tableHeight={tableHeight}
             />
           </div>
         </FullWidthSection>
