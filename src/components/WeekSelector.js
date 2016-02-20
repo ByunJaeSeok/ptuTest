@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 
-import RadioButton from 'material-ui/lib/radio-button';
-import RadioButtonGroup from 'material-ui/lib/radio-button-group';
+import SelectField from 'material-ui/lib/select-field';
+import MenuItem from 'material-ui/lib/menus/menu-item';
 
 const propTypes = {
   onChnage: PropTypes.func,
@@ -16,66 +16,42 @@ class WeekSelector extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      selectedWeek: 'all',
     };
     this.setWeek = this.setWeek.bind(this);
   }
 
-  setWeek(event) {
+  setWeek(event, index, value) {
     this.setState({
-      selectedWeek: event.target.value,
+      selectedWeek: value,
     });
 
     if (this.props.onChnage) {
-      this.props.onChnage(event.target.value);
+      this.props.onChnage(value);
     }
   }
 
   render() {
     return (
       <div>
-        <h3>요일선택</h3>
-        <hr />
-        <div>
-          <RadioButtonGroup name="shipSpeed" defaultSelected="all">
-            <RadioButton
-              value="all"
-              label="전체"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "7%" }}
-            />
-            <RadioButton
-              value="월"
-              label="월"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "5%" }}
-            />
-            <RadioButton
-              value="화"
-              label="화"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "5%" }}
-            />
-            <RadioButton
-              value="수"
-              label="수"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "5%" }}
-            />
-            <RadioButton
-              value="목"
-              label="목"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "5%" }}
-            />
-            <RadioButton
-              value="금"
-              label="금"
-              onClick={ this.setWeek }
-              style={{ float: "left", width: "5%" }}
-            />
-          </RadioButtonGroup>
-        </div>
+        <SelectField
+          fullWidth
+          floatingLabelStyle={{
+            fontSize: '25px',
+            color: 'black',
+            fontWeight: '600',
+          }}
+          floatingLabelText="요일 선택"
+          value={this.state.selectedWeek}
+          onChange={this.setWeek}
+        >
+          <MenuItem value="all" primaryText="전체"/>
+          <MenuItem value="월" primaryText="월"/>
+          <MenuItem value="화" primaryText="화"/>
+          <MenuItem value="수" primaryText="수"/>
+          <MenuItem value="목" primaryText="목"/>
+          <MenuItem value="금" primaryText="금"/>
+        </SelectField>
       </div>
     );
   }

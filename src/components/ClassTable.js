@@ -67,6 +67,7 @@ const TextCell = ({rowIndex, data, col, ...props}) => {
 
 const ArrayTextCell = ({rowIndex, data, col, ...props}) => {
   const selectedData = data[rowIndex] || {};
+
   return (
     <Cell {...props}>
       {selectedData[col].join(', ')}
@@ -116,7 +117,14 @@ class ClassTable extends Component {
       tableHeight, selectedTime,
     } = this.props;
     const { classList, isLoading } = this.state;
-    const filteredClassList = timeFilter(classList, selectedTime);
+    const filterTimeList = timeFilter(classList, selectedTime);
+
+    const filterWeekList = _.filter(filterTimeList, (value, index) => {
+      if (value.week !== selectedWeek && selectedWeek !== 'all') {
+        return null;
+      }
+      return value;
+    });
 
     return (
       <div>
@@ -143,52 +151,52 @@ class ClassTable extends Component {
         <Table
           rowHeight={50}
           headerHeight={50}
-          rowsCount={filteredClassList.length}
+          rowsCount={filterWeekList.length}
           width={tableWidth}
           height={tableHeight}
         >
           <Column
             header={<Cell>학수번호</Cell>}
-            cell={<TextCell data={filteredClassList} col="classID" />}
+            cell={<TextCell data={filterWeekList} col="classID" />}
             fixed={true}
             width={100}
           />
           <Column
             header={<Cell>이수구분</Cell>}
-            cell={<TextCell data={filteredClassList} col="classType" />}
+            cell={<TextCell data={filterWeekList} col="classType" />}
             fixed={true}
             width={100}
           />
           <Column
             header={<Cell>과목명</Cell>}
-            cell={<TextCell data={filteredClassList} col="className" />}
+            cell={<TextCell data={filterWeekList} col="className" />}
             fixed={true}
             width={300}
             flexGrow={2}
           />
           <Column
             header={<Cell>교수명</Cell>}
-            cell={<TextCell data={filteredClassList} col="professor" />}
+            cell={<TextCell data={filterWeekList} col="professor" />}
             fixed={true}
             width={100}
             flexGrow={2}
           />
           <Column
             header={<Cell>학년</Cell>}
-            cell={<TextCell data={filteredClassList} col="grade" />}
+            cell={<TextCell data={filterWeekList} col="grade" />}
             fixed={true}
             width={100}
             flexGrow={1}
           />
           <Column
             header={<Cell>요일</Cell>}
-            cell={<TextCell data={filteredClassList} col="week" />}
+            cell={<TextCell data={filterWeekList} col="week" />}
             fixed={true}
             width={100}
           />
           <Column
             header={<Cell>시간</Cell>}
-            cell={<ArrayTextCell data={filteredClassList} col="classTime" />}
+            cell={<ArrayTextCell data={filterWeekList} col="classTime" />}
             fixed={true}
             width={100}
           />
@@ -218,10 +226,10 @@ export default ClassTable;
 //   </TableHeader>
 //   <TableBody displayRowCheckbox={false}>
 //     {
-//       _.map(filteredClassList, function (value, index) {
-//         if (value.week !== selectedWeek && selectedWeek !== 'all') {
-//           return null;
-//         }
+      // _.map(filterWeekList, function (value, index) {
+      //   if (value.week !== selectedWeek && selectedWeek !== 'all') {
+      //     return null;
+      //   }
 //
 //         return (
 //           <TableRow key={index}>
