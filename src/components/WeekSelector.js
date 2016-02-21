@@ -34,14 +34,10 @@ class WeekSelector extends Component {
   render() {
     return (
       <div>
+        <h3>요일선택</h3>
+        <hr />
         <SelectField
           fullWidth
-          floatingLabelStyle={{
-            fontSize: '25px',
-            color: 'black',
-            fontWeight: '600',
-          }}
-          floatingLabelText="요일 선택"
           value={this.state.selectedWeek}
           onChange={this.setWeek}
         >
