@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import 'fixed-data-table/dist/fixed-data-table.css';
+import 'react-select/dist/react-select.css';
 import _ from 'lodash';
 import React, { Component } from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
@@ -104,7 +105,6 @@ class Index extends Component {
       tableHeight,
       leftNavOpen,
     } = this.state;
-
     const { bodyWrapper, body, appBar } = this.getStyles();
     let departmentTitle = majorList[selectedDepartment];
     if (_.isUndefined(departmentTitle)) {
