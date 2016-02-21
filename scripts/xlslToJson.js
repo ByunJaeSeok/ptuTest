@@ -36,7 +36,6 @@ _.map(filePatterns, async (filePath) => {
     .map((classItem) => {
       if (!classItem.classID) return {};
       const timeList = classItem.classTime.split(',');
-      console.log(timeList);
       const classTime =  _.isEmpty(timeList) ? [] : _.map(timeList, _.toNumber);
       return {
         ...classItem,
