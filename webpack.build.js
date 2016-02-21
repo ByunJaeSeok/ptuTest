@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
   entry: [
     './src/index.js',
   ],
@@ -33,10 +32,10 @@ module.exports = {
       'window.jQuery': 'jquery',
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch',
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"',
     }),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         screw_ie8: true,

@@ -84,9 +84,6 @@ class SideNavBar extends Component {
         open={open}
         onRequestChange={this.setOpen}
         containerStyle={{ zIndex: zIndex.leftNav - 100 }}
-        open={open}
-        onRequestChange={this.setOpen}
-        containerStyle={{ zIndex: zIndex.leftNav - 100 }}
       >
         <div style={styles.logo} onTouchTap={this.handleTouchTapHeader}>
           평택대학교 수강신청
