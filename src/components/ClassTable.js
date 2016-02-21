@@ -67,10 +67,10 @@ const TextCell = ({rowIndex, data, col, ...props}) => {
 
 const ArrayTextCell = ({rowIndex, data, col, ...props}) => {
   const selectedData = data[rowIndex] || {};
-
+  const selectedValue = selectedData[col];
   return (
     <Cell {...props}>
-      {selectedData[col].join(', ')}
+      {_.isArray(selectedValue) ? selectedValue.join(', ') : ''}
     </Cell>
   )
 };
@@ -124,7 +124,9 @@ class ClassTable extends Component {
     const filterTimeList = timeFilter(classList, selectedTime);
 
     const filterWeekList = _.filter(filterTimeList, (value, index) => {
-      if (value.week !== selectedWeek && selectedWeek !== 'all') {
+      if (!value.classID) return null;
+      if (value.week !== selectedWeek &&
+          selectedWeek !== 'all') {
         return null;
       }
       return value;
@@ -215,62 +217,3 @@ ClassTable.defaultProps = defaultProps;
 
 
 export default ClassTable;
-
-// <Table>
-//   <TableHeader displaySelectAll={false} adjustForCheckbox={false}>
-//     <TableRow>
-//       <TableHeaderColumn style={styles.idColumn}>학수번호</TableHeaderColumn>
-//       <TableHeaderColumn style={styles.idColumn}>이수구분</TableHeaderColumn>
-//       <TableHeaderColumn style={styles.classColumn}>과목명</TableHeaderColumn>
-//       <TableHeaderColumn>교수명</TableHeaderColumn>
-//       <TableHeaderColumn>학년</TableHeaderColumn>
-//       <TableHeaderColumn style={styles.weekColumn}>요일</TableHeaderColumn>
-//       <TableHeaderColumn style={styles.idColumn}>시간</TableHeaderColumn>
-//     </TableRow>
-//   </TableHeader>
-//   <TableBody displayRowCheckbox={false}>
-//     {
-      // _.map(filterWeekList, function (value, index) {
-      //   if (value.week !== selectedWeek && selectedWeek !== 'all') {
-      //     return null;
-      //   }
-//
-//         return (
-//           <TableRow key={index}>
-//             <TableRowColumn
-//               style={styles.idColumn}
-//             >
-//               {value.classID}
-//             </TableRowColumn>
-//             <TableRowColumn
-//               style={styles.idColumn}
-//             >
-//               {value.classType}
-//             </TableRowColumn>
-//             <TableRowColumn
-//               style={styles.classColumn}
-//             >
-//               {value.className}
-//             </TableRowColumn>
-//             <TableRowColumn>
-//               {value.professor}
-//             </TableRowColumn>
-//             <TableRowColumn>
-//               {value.grade}
-//             </TableRowColumn>
-//             <TableRowColumn
-//               style={styles.weekColumn}
-//             >
-//               {value.week}
-//             </TableRowColumn>
-//             <TableRowColumn
-//               style={styles.idColumn}
-//             >
-//               {value.classTime.join(', ')}
-//             </TableRowColumn>
-//           </TableRow>
-//         );
-//       })
-//     }
-//   </TableBody>
-// </Table>
