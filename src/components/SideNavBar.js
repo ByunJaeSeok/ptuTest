@@ -79,10 +79,11 @@ class SideNavBar extends Component {
 
     return (
       <LeftNav
-        style={{
-          zIndex: 2,
-          width: open ? '310px' : '0px',
-        }}
+        docked={false}
+        width={open ? 310 : 0}
+        open={open}
+        onRequestChange={this.setOpen}
+        containerStyle={{ zIndex: zIndex.leftNav - 100 }}
         open={open}
         onRequestChange={this.setOpen}
         containerStyle={{ zIndex: zIndex.leftNav - 100 }}
