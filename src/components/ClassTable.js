@@ -87,12 +87,15 @@ class ClassTable extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.selectedDepartment);
     const selectedDepartment = this.props.selectedDepartment;
     this.fetchData(selectedDepartment);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.fetchData(nextProps.selectedDepartment);
+    if(this.props.selectedDepartment !== nextProps.selectedDepartment) {
+      this.fetchData(nextProps.selectedDepartment);
+    }
   }
 
   fetchData(selectedDepartment) {
@@ -117,6 +120,7 @@ class ClassTable extends Component {
       tableHeight, selectedTime,
     } = this.props;
     const { classList, isLoading } = this.state;
+
     const filterTimeList = timeFilter(classList, selectedTime);
 
     const filterWeekList = _.filter(filterTimeList, (value, index) => {
